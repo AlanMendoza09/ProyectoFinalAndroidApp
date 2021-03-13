@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_gastos"
+        android:icon="@drawable/ic_baseline_account_balance_24"
+        android:title="Gastos"
+        />
+    <item
+        android:id="@+id/ic_ahorros"
+        android:icon="@drawable/ic_baseline_account_balance_wallet_24"
+        android:title="Ahorro"
+        />
+    <item
+        android:id="@+id/ic_actividad"
+        android:icon="@drawable/ic_baseline_notifications_none_24"
+        android:title="Actividades"
+        />
+    <item
+        android:id="@+id/ic_ajustes"
+        android:icon="@drawable/ic_baseline_miscellaneous_services_24"
+        android:title="Ajustes"
+        />
+</menu>
