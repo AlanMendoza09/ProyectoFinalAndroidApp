@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "170022647509",
+    "project_id": "proyectofinalandroid-d25aa",
+    "storage_bucket": "proyectofinalandroid-d25aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170022647509:android:bdb245c8fadbedb538945c",
+        "android_client_info": {
+          "package_name": "edu.itesm.proyecto_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170022647509-5ksihdksckk9fnmhk0b50c5d606hn75r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVOgKfbtmRpl4h8FdVwwgHcWO3RY58nFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170022647509-5ksihdksckk9fnmhk0b50c5d606hn75r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
