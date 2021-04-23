@@ -1,6 +1,8 @@
 package edu.itesm.proyecto_final
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -46,5 +48,18 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fl_wrapper, fragment)
             commit()
         }
+
+    fun agregarGasto(view: View) {
+        val intento = Intent(this, AgregarAhorro::class.java)
+        startActivity(intento)
+        finish()
+    }
+
+    fun agregarAhorro(view: View){
+        val intento = Intent(this, AgregarIngresoActivity::class.java)
+        startActivity(intento)
+        finish()
+    }
+
 
 }

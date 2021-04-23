@@ -1,5 +1,6 @@
 package edu.itesm.proyecto_final
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,5 +32,11 @@ data class Ahorro (val name: String?, val type: String?) {
             }else{
                 Toast.makeText(applicationContext, "error en nombre o cantidad!", Toast.LENGTH_LONG).show()
             }
+        }
+
+        fun cancelar(view: View) {
+            val intento = Intent(this, MainActivity::class.java)
+            startActivity(intento)
+            finish()
         }
     }
