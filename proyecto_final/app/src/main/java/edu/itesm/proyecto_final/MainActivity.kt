@@ -1,16 +1,20 @@
 package edu.itesm.proyecto_final
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import edu.itesm.proyecto_final.fragments.ActividadesFragment
 import edu.itesm.proyecto_final.fragments.AhorrosFragment
 import edu.itesm.proyecto_final.fragments.AjustesFragment
 import edu.itesm.proyecto_final.fragments.GastosFragment
 
+
 class MainActivity : AppCompatActivity() {
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,13 +29,16 @@ class MainActivity : AppCompatActivity() {
 
        bottom_navigation.setOnNavigationItemSelectedListener{
            when (it.itemId){
-               R.id.ic_gastos->makeCurrentFragment(gastosFragment)
-               R.id.ic_ahorros->makeCurrentFragment(ahorrosFragment)
-               R.id.ic_actividad->makeCurrentFragment(actividadesFragment)
-               R.id.ic_ajustes->makeCurrentFragment(ajustesFragment)
+               R.id.ic_gastos -> makeCurrentFragment(gastosFragment)
+               R.id.ic_ahorros -> makeCurrentFragment(ahorrosFragment)
+               R.id.ic_actividad -> makeCurrentFragment(actividadesFragment)
+               R.id.ic_ajustes -> makeCurrentFragment(ajustesFragment)
            }
            true
        }
+        // Write a message to the database
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("ahorros")
     }
 
     private fun makeCurrentFragment(fragment: Fragment) =
