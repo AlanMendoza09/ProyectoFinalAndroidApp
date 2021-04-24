@@ -130,13 +130,6 @@ class GastosFragment : Fragment(), OnChartValueSelectedListener {
 
 
         */
-        xEntre.add("Alfred")
-        xEntre.add("Alan")
-        xEntre.add("Gera")
-
-        yEntre.add(PieEntry(23.5f, xEntre[0]))
-        yEntre.add(PieEntry(40.5f, xEntre[1]))
-        yEntre.add(PieEntry(23.5f, xEntre[2]))
 
 
         //Creates data set
