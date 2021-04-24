@@ -58,13 +58,13 @@ class MainActivity : AppCompatActivity() {
         }
 
     fun agregarGasto(view: View) {
-        val intento = Intent(this, AgregarAhorro::class.java)
+        val intento = Intent(this, AgregarIngresoActivity::class.java)
         startActivity(intento)
         finish()
     }
 
     fun agregarAhorro(view: View){
-        val intento = Intent(this, AgregarIngresoActivity::class.java)
+        val intento = Intent(this, AgregarAhorro::class.java)
         startActivity(intento)
         finish()
     }
