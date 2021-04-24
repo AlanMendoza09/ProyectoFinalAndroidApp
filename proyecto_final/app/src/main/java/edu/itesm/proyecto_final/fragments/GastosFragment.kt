@@ -2,6 +2,7 @@ package edu.itesm.proyecto_final.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.google.firebase.database.*
+import edu.itesm.proyecto_final.Ingreso
 import edu.itesm.proyecto_final.R
 import kotlinx.android.synthetic.main.fragment_ahorros.*
 import kotlinx.android.synthetic.main.fragment_gastos.*
@@ -37,6 +40,9 @@ class GastosFragment : Fragment(), OnChartValueSelectedListener {
     private val xEntre = ArrayList<String>()
     lateinit var pieChart: PieChart
 
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -55,7 +61,9 @@ class GastosFragment : Fragment(), OnChartValueSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pieChart = pieChartGastos
-        addDataSet()
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("ingresos")
+        getIngreso()
     }
 
     companion object {
@@ -77,13 +85,36 @@ class GastosFragment : Fragment(), OnChartValueSelectedListener {
                 }
             }
     }
+    public fun getIngreso(){
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pieChart.invalidate()
+                pieChart.clear()
+                xEntre.clear()
+                yEntre.clear()
+
+                for (pokemon in snapshot.children){
+                    var objeto = pokemon.getValue(Ingreso::class.java)
+                    if (objeto != null) {
+                        var x :Float=  objeto?.type.toString().toFloat()
+                        xEntre.add(objeto.name.toString())
+                        yEntre.add(PieEntry(x, objeto.name.toString()))
+                    }
+
+                }
+                addDataSet()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
 
 
     fun addDataSet(){
-        xEntre.clear()
-        yEntre.clear()
-        pieChart.invalidate()
-        pieChart.clear()
+
         /*
         for (i in firebaseXEntry){
             xEntre.add(i)

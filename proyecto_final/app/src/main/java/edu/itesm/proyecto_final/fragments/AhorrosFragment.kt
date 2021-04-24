@@ -2,6 +2,7 @@ package edu.itesm.proyecto_final.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.google.firebase.database.*
+import edu.itesm.proyecto_final.Ahorro
 import edu.itesm.proyecto_final.R
 import kotlinx.android.synthetic.main.fragment_ahorros.*
 import kotlin.math.roundToInt
@@ -37,6 +40,9 @@ class AhorrosFragment : Fragment(), OnChartValueSelectedListener {
     private val xEntre = ArrayList<String>()
     lateinit var pieChart: PieChart
 
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -57,7 +63,10 @@ class AhorrosFragment : Fragment(), OnChartValueSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pieChart = pieChartAhorros
-        addDataSet()
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("ahorros")
+        getAhorro()
+
     }
 
     companion object {
@@ -79,12 +88,38 @@ class AhorrosFragment : Fragment(), OnChartValueSelectedListener {
                 }
             }
     }
+    public fun getAhorro(){
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pieChart.invalidate()
+                pieChart.clear()
+                xEntre.clear()
+                yEntre.clear()
 
+                for (pokemon in snapshot.children){
+                    var objeto = pokemon.getValue(Ahorro::class.java)
+                    if (objeto != null) {
+
+                        var x :Float=  objeto.type.toString().toFloat()
+                        xEntre.add(objeto.name.toString())
+                        yEntre.add(PieEntry(x, objeto.name.toString()))
+                    }
+
+                }
+                addDataSet()
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
     fun addDataSet(){
-        xEntre.clear()
-        yEntre.clear()
-        pieChart.invalidate()
-        pieChart.clear()
+
+        Log.i("Ahorros", xEntre.toString())
         /*
         for (i in firebaseXEntry){
             xEntre.add(i)
@@ -100,14 +135,6 @@ class AhorrosFragment : Fragment(), OnChartValueSelectedListener {
 
 
         */
-        xEntre.add("Alfred")
-        xEntre.add("Alan")
-        xEntre.add("Gera")
-
-        yEntre.add(PieEntry(23.5f, xEntre[0]))
-        yEntre.add(PieEntry(40.5f, xEntre[1]))
-        yEntre.add(PieEntry(23.5f, xEntre[2]))
-
 
         //Creates data set
         val pieDataSet = PieDataSet(yEntre, "Datos", )

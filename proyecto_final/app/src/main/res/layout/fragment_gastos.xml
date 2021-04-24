@@ -15,26 +15,26 @@
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartGastos"
-            android:layout_width="413dp"
-            android:layout_height="494dp"
+            android:layout_width="386dp"
+            android:layout_height="608dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.36"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/agregar"
-            android:layout_width="226dp"
-            android:layout_height="53dp"
+            android:layout_width="112dp"
+            android:layout_height="46dp"
             android:backgroundTint="@android:color/holo_green_light"
-            android:text="Agregar Gasto"
             android:onClick="agregarGasto"
+            android:text="Agregar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.946"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pieChartGastos"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintVertical_bias="0.196" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
