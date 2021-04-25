@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import edu.itesm.proyecto_final.fragments.ActividadesFragment
 import edu.itesm.proyecto_final.fragments.AhorrosFragment
 import edu.itesm.proyecto_final.fragments.AjustesFragment
@@ -66,6 +68,12 @@ class MainActivity : AppCompatActivity() {
     fun agregarAhorro(view: View){
         val intento = Intent(this, AgregarAhorro::class.java)
         startActivity(intento)
+        finish()
+    }
+
+    fun logOut(view: View){
+        Firebase.auth.signOut()
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 

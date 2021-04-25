@@ -15,9 +15,8 @@
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartAhorros"
-            android:layout_width="390dp"
-            android:layout_height="623dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="384dp"
+            android:layout_height="539dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,18 +26,18 @@
             android:layout_width="109dp"
             android:layout_height="50dp"
             android:layout_marginBottom="40dp"
-            android:backgroundTint="@android:color/holo_green_light"
+            android:backgroundTint="@android:color/holo_green_dark"
             android:onClick="agregarAhorro"
             android:text="Agregar"
             android:textAlignment="center"
+            android:textColor="@color/white"
             app:iconGravity="top"
             app:iconPadding="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pieChartAhorros"
-            app:layout_constraintVertical_bias="0.594" />
+            app:layout_constraintVertical_bias="0.266" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
