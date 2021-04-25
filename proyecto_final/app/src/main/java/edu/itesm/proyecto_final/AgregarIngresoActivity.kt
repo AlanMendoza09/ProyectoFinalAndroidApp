@@ -41,6 +41,12 @@ class AgregarIngresoActivity : AppCompatActivity() {
 
             bundle.putString("AgregarIngreso_main", "added_Ingreso")
             analytics.logEvent("Ingreso_main", bundle)
+            findViewById<EditText>(R.id.nombre).setText("")
+            findViewById<EditText>(R.id.tipo).setText("")
+            Toast.makeText(applicationContext, "Gasto agregado!", Toast.LENGTH_LONG).show()
+            val intento = Intent(this, MainActivity::class.java)
+            startActivity(intento)
+            finish()
         }else{
             Toast.makeText(applicationContext, "error en nombre o cantidad!", Toast.LENGTH_LONG).show()
         }

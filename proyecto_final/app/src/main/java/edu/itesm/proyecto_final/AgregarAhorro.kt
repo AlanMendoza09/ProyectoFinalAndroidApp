@@ -36,6 +36,12 @@ data class Ahorro (val name: String?, val type: String?) {
                 reference.child(id!!).setValue(ahorro)
                 bundle.putString("AgregarAhorro_main", "added_Ahorro")
                 analytics.logEvent("Ahorro_main", bundle)
+                findViewById<EditText>(R.id.nombre).setText("")
+                findViewById<EditText>(R.id.tipo).setText("")
+                Toast.makeText(applicationContext, "Gasto agregado!", Toast.LENGTH_LONG).show()
+                val intento = Intent(this, MainActivity::class.java)
+                startActivity(intento)
+                finish()
             }else{
                 Toast.makeText(applicationContext, "error en nombre o cantidad!", Toast.LENGTH_LONG).show()
             }
